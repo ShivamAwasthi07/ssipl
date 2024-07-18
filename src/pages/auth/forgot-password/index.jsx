@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { lazy } from "react";
+import AppLayout from "../../../components/layout";
+
+const ForgotPasswordScreen = lazy(() =>
+  import("../../../screen-components/auth/forgot-password/index")
+);
 
 const ForgotPassword = () => {
   return (
-    <div>ForgotPassword</div>
-  )
-}
+    <AppLayout>
+      <ForgotPasswordScreen />
+    </AppLayout>
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

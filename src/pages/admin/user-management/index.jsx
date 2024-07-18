@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { lazy } from "react";
+import AppLayout from "../../../components/layout";
+
+const UserManagementScreen = lazy(() =>
+  import("../../../screen-components/admin/user-management/index")
+);
 
 const UserManagement = () => {
   return (
-    <div>UserManagement</div>
-  )
-}
+    <AppLayout>
+      <UserManagementScreen />
+    </AppLayout>
+  );
+};
 
-export default UserManagement
+export default UserManagement;

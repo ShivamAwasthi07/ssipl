@@ -1,5 +1,4 @@
 import React, { lazy } from "react";
-import ROUTES from "../../../constants/RouterConst";
 import AppLayout from "../../../components/layout";
 
 const ClientManagementScreen = lazy(() =>

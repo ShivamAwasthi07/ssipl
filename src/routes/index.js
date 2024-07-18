@@ -1,45 +1,32 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import NoPageFound from "../components/NoPageFound";
 import ROUTES from "../constants/RouterConst";
-
-const SignupScreen = lazy(() => import("../pages/auth/signup/index"));
-const LoginScreen = lazy(() => import("../pages/auth/login/index"));
-const ForgotPassword = lazy(() =>
-  import("../pages/auth/forgot-password/index")
-);
-const ClientManagement = lazy(() =>
-  import("../pages/admin/client-management/index")
-);
-const WareHouseManagement = lazy(() =>
-  import("../pages/admin/warehouse-management/index")
-);
+import Login from "../pages/auth/login";
+import ForgotPassword from "../pages/auth/forgot-password";
+import ClientManagement from "../pages/admin/client-management";
+import WarehouseManagement from "../pages/admin/warehouse-management";
+import UserManagement from "../pages/admin/user-management";
 
 const Router = () => {
-
   return (
-    <Suspense fallback={<div>Loading.....</div>}>
-      <Routes>
-        <Route path={`/${ROUTES.LOGIN}`} element={<LoginScreen />} />
-        <Route
-          path={`/${ROUTES.FORGOT_PASSWORD}`}
-          element={<ForgotPassword />}
-        />
-        <Route path={`/${ROUTES.SIGNUP}`} element={<SignupScreen />} />
+    <Routes>
+      <Route path={`/${ROUTES.LOGIN}`} element={<Login />} />
+      <Route path={`/${ROUTES.FORGOT_PASSWORD}`} element={<ForgotPassword />} />
 
-        {/* Admin Routes */}
-        <Route
-          path={`/${ROUTES.CLIENT_MANAGEMENT}`}
-          element={<ClientManagement />}
-        />
-        <Route
-          path={`/${ROUTES.WAREHOUSE_MANAGEMENT}`}
-          element={<WareHouseManagement />}
-        />
+      {/* Admin Routes */}
+      <Route
+        path={`/${ROUTES.CLIENT_MANAGEMENT}`}
+        element={<ClientManagement />}
+      />
+      <Route path={`/${ROUTES.USER_MANAGEMENT}`} element={<UserManagement />} />
+      <Route
+        path={`/${ROUTES.WAREHOUSE_MANAGEMENT}`}
+        element={<WarehouseManagement />}
+      />
 
-        <Route path="*" element={<NoPageFound />} />
-      </Routes>
-    </Suspense>
+      <Route path="*" element={<NoPageFound />} />
+    </Routes>
   );
 };
 
