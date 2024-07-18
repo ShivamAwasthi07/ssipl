@@ -7,6 +7,7 @@ import ForgotPassword from "../pages/auth/forgot-password";
 import ClientManagement from "../pages/admin/client-management";
 import WarehouseManagement from "../pages/admin/warehouse-management";
 import UserManagement from "../pages/admin/user-management";
+import ROUTE_USERTYPE from "../constants/RouteUsertype";
 
 const Router = () => {
   return (
@@ -16,12 +17,12 @@ const Router = () => {
 
       {/* Admin Routes */}
       <Route
-        path={`/${ROUTES.CLIENT_MANAGEMENT}`}
+        path={`/${ROUTE_USERTYPE.ADMIN}/${ROUTES.CLIENT_MANAGEMENT}`}
         element={<ClientManagement />}
       />
-      <Route path={`/${ROUTES.USER_MANAGEMENT}`} element={<UserManagement />} />
+      <Route path={`/${ROUTE_USERTYPE.ADMIN}/${ROUTES.USER_MANAGEMENT}`} element={<UserManagement />} />
       <Route
-        path={`/${ROUTES.WAREHOUSE_MANAGEMENT}`}
+        path={`/${ROUTE_USERTYPE.ADMIN}/${ROUTES.WAREHOUSE_MANAGEMENT}`}
         element={<WarehouseManagement />}
       />
 

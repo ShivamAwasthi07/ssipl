@@ -1,15 +1,15 @@
-import React, { lazy } from "react";
-import AppLayout from "../../../components/layout";
+import React, { lazy, Suspense } from "react";
+import AppLoader from "../../../components/suspense-loader";
 
 const LoginScreen = lazy(() =>
-  import("../../../screen-components/auth/forgot-password/index")
+  import("../../../screen-components/auth/login/index")
 );
 
 const Login = () => {
   return (
-    <AppLayout>
+    <Suspense fallback={<AppLoader />}>
       <LoginScreen />
-    </AppLayout>
+    </Suspense>
   );
 };
 
