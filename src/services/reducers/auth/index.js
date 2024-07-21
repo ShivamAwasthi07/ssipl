@@ -1,17 +1,17 @@
 import { appActions } from "../../action";
 
-const initialState = {};
+const initialState = {
+  loginData: {},
+};
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case `${appActions.LOGIN}_START`:
-      return { ...state, isLogin: true };
+      return { ...state, isLoginLoading: true, loginData: {} };
     case `${appActions.LOGIN}_SUCCESS`:
-        console.log(action)
-      localStorage.setItem("token", "isenterererererer");
-      return { ...state, isLogin: false };
+      return { ...state, isLoginLoading: false, loginData: action };
     case `${appActions.LOGIN}_FAIL`:
-      return { ...state, isLogin: false };
+      return { ...state, isLoginLoading: false, loginData: {} };
     default:
       return { ...state };
   }

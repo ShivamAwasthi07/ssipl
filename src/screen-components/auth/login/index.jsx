@@ -1,19 +1,25 @@
 import React, { Fragment } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../../services/action/auth";
 import AppButton from "../../../components/button";
-import {
-  Grid,
-  Paper,
-  Box,
-  TextField,
-  Typography,
-  Link,
-} from "@mui/material";
+import { Grid, Paper, Box, Typography, Link } from "@mui/material";
+import SSIPLLogo from "./../../../assets/logos/logo.png";
+import Input from "../../../components/inputs/Input";
+import { useForm } from "react-hook-form";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import { emailRegex } from "../../../utils/regex/regex";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
-  const onLogin = () => {
+  const { isLoginLoading } = useSelector((state) => state.authReducer);
+  const {
+    register: loginRegister,
+    handleSubmit: loginSubmit,
+    formState: { errors: loginError },
+  } = useForm();
+
+  const onLogin = (data) => {
+    console.log(data);
     dispatch(loginAction({}));
   };
   return (
@@ -24,11 +30,12 @@ const LoginScreen = () => {
           xs={12}
           md={5}
           style={{
-            background: "url(https://images.unsplash.com/photo-1548504769-900b70ed122e?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat center center",
+            background:
+              "url(https://images.unsplash.com/photo-1548504769-900b70ed122e?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat center center",
             backgroundSize: "cover",
           }}
         >
-          SSIPL
+          <img src={SSIPLLogo} alt="LOGO" height={150} />
         </Grid>
         <Grid
           item
@@ -57,32 +64,29 @@ const LoginScreen = () => {
               Login to SSIPL
             </Typography>
             <Box component="form" noValidate sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
+              <Input
                 label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
+                {...loginRegister("email", {
+                  required: true,
+                  pattern: emailRegex,
+                })}
+                error={!!loginError.email}
               />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
+              <Input
                 label="Password"
                 type="password"
-                id="password"
-                autoComplete="current-password"
+                {...loginRegister("password", {
+                  required: true,
+                })}
+                error={!!loginError.password}
               />
               <AppButton
                 title="Log In"
                 loadingType={true}
-                isLoading={false}
+                isLoading={isLoginLoading}
                 loadPosition={"end"}
-                onClick={onLogin}
+                endIcon={LockOpenIcon}
+                onClick={loginSubmit(onLogin)}
                 fullWidth={true}
               />
               <Grid container>
@@ -91,7 +95,6 @@ const LoginScreen = () => {
                     Forgot password?
                   </Link>
                 </Grid>
-                
               </Grid>
             </Box>
           </Box>

@@ -1,30 +1,43 @@
-import React, { Fragment, Suspense } from "react";
-// import React, { Fragment, Suspense, useEffect } from "react";
+import React, { Suspense, useState } from "react";
 import AppHeader from "./header";
 import AppSidebar from "./sidebar";
 import AppLoader from "../suspense-loader";
-// import { useNavigate } from "react-router-dom";
-// import ROUTES from "../../constants/RouterConst";
+import { Toolbar, Box } from "@mui/material";
+import { drawerWidth, headHeight } from "../../constants/numConstant";
 
-const AppLayout = ({ children }) => {
-  // const navigate = useNavigate();
-  // const checkAuth = () => {
-  //   let key = localStorage.getItem("user");
-  //   if (!key) {
-  //     localStorage.clear();
-  //     navigate(`/${ROUTES.LOGIN}`);
-  //   }
-  // };
+const AppLayout = ({ children, headerTitle = "" }) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  // useEffect(() => {
-  //   checkAuth();
-  // }, [checkAuth]);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   return (
-    <Fragment>
-      <AppHeader />
-      <Suspense fallback={<AppLoader />}>{children}</Suspense>
-      <AppSidebar />
-    </Fragment>
+    <Box sx={{ display: "flex" }}>
+      <AppHeader
+        headerTitle={headerTitle}
+        handleDrawerToggle={handleDrawerToggle}
+        drawerWidth={drawerWidth}
+        headHeight={headHeight}
+      />
+      <AppSidebar
+        handleDrawerToggle={handleDrawerToggle}
+        drawerWidth={drawerWidth}
+        mobileOpen={mobileOpen}
+        headHeight={headHeight}
+      />
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <Toolbar />
+        <Suspense fallback={<AppLoader />}>{children}</Suspense>
+      </Box>
+    </Box>
   );
 };
 
