@@ -1,10 +1,11 @@
-import { Box, Divider, List, Toolbar } from "@mui/material";
+import { Box, List, Toolbar } from "@mui/material";
 import React, { Fragment } from "react";
 import MobileDrawer from "../drawers/MobileDrawer";
 import DesktopDrawer from "../drawers/DesktopDrawer";
 import SidebarListItem from "./SidebarListItem";
 import SITE_LOGO from "../../../assets/logos/logo.png";
 import { ADMIN_ROUTES } from "../../../routes/paths/adminRoutes";
+import StaticButtons from "./StaticButtons";
 
 const AppSidebar = ({
   drawerWidth,
@@ -17,17 +18,17 @@ const AppSidebar = ({
       <Toolbar>
         <img
           src={SITE_LOGO}
-          height={headHeight}
+          height={120}
           style={{ margin: "auto" }}
           alt="LOGO"
         />
       </Toolbar>
-      <Divider />
-      <List>
-        {ADMIN_ROUTES.map((route) => (
-          <SidebarListItem route={route} key={route.route}/>
+      <List sx={{ height: "60vh", overflow: "scroll" }}>
+        {ADMIN_ROUTES.map((route, index) => (
+          <SidebarListItem route={route} key={route.route} navClass={`side-${index}`}/>
         ))}
       </List>
+      <StaticButtons />
     </div>
   );
   return (

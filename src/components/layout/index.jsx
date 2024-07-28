@@ -13,31 +13,31 @@ const AppLayout = ({ children, headerTitle = "" }) => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <AppHeader
-        headerTitle={headerTitle}
-        handleDrawerToggle={handleDrawerToggle}
-        drawerWidth={drawerWidth}
-        headHeight={headHeight}
-      />
-      <AppSidebar
-        handleDrawerToggle={handleDrawerToggle}
-        drawerWidth={drawerWidth}
-        mobileOpen={mobileOpen}
-        headHeight={headHeight}
-      />
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
-        <Toolbar />
-        <Suspense fallback={<AppLoader />}>{children}</Suspense>
+      <Box sx={{ display: "flex" }}>
+        <AppHeader
+          headerTitle={headerTitle}
+          handleDrawerToggle={handleDrawerToggle}
+          drawerWidth={drawerWidth}
+          headHeight={headHeight}
+        />
+        <AppSidebar
+          handleDrawerToggle={handleDrawerToggle}
+          drawerWidth={drawerWidth}
+          mobileOpen={mobileOpen}
+          headHeight={headHeight}
+        />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+          }}
+        >
+          <Toolbar />
+          <Suspense fallback={<AppLoader />}>{children}</Suspense>
+        </Box>
       </Box>
-    </Box>
   );
 };
 
