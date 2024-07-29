@@ -26,7 +26,7 @@ export const Header = styled("div")({
   justifyContent: "space-between",
   alignItems: "center",
   padding: "20px 16px",
-  color: COLORS.theme,
+  color: COLORS.heading,
   width: "90%",
   position: "relative",
   left: "50%",

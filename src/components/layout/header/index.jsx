@@ -1,11 +1,25 @@
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Avatar,
+  IconButton,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import React, { Fragment, useState } from "react";
 
 import SettingPopup from "./SettingPopup";
 import { ICONS } from "../../../assets/icons";
 import { COLORS } from "../../../assets/colors";
+import SearchBar from "../../searchbar";
 
-const AppHeader = ({ drawerWidth, headerTitle, handleDrawerToggle, headHeight }) => {
+const AppHeader = ({
+  drawerWidth,
+  headerTitle,
+  handleDrawerToggle,
+  headHeight,
+  isSearchable = false,
+}) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const handleSettingsOpen = () => {
     setSettingsOpen(true);
@@ -25,8 +39,8 @@ const AppHeader = ({ drawerWidth, headerTitle, handleDrawerToggle, headHeight })
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
           minHeight: headHeight,
-          backgroundColor: 'rgba(235, 119, 58, 0.08)',
-          boxShadow: 'none'
+          backgroundColor: "transparent",
+          boxShadow: "none",
         }}
       >
         <Toolbar>
@@ -39,12 +53,35 @@ const AppHeader = ({ drawerWidth, headerTitle, handleDrawerToggle, headHeight })
           >
             {ICONS.hamburger}
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, color: COLORS.heading }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, color: COLORS.heading }}
+          >
             Hi, {userName}
           </Typography>
-          <IconButton color="black" edge="end" onClick={handleSettingsOpen} className="settings-button">
-            {ICONS.settings}
-          </IconButton>
+          <Stack direction="row" spacing={2.5}>
+            {isSearchable && <SearchBar onChange={(value) => console.log(value)}/>}
+            <Avatar
+              className="avatar"
+              variant="rounded"
+              style={{
+                color: COLORS.warning,
+                backgroundColor: COLORS.warning_secondary,
+              }}
+            >
+              {ICONS.notification}
+            </Avatar>
+            <Avatar
+              className="avatar"
+              onClick={handleSettingsOpen}
+              variant="rounded"
+              src={"https://www.w3schools.com/howto/img_avatar.png"}
+            >
+              SA
+            </Avatar>
+          </Stack>
         </Toolbar>
       </AppBar>
       <SettingPopup onClose={handleSettingsClose} open={settingsOpen} />

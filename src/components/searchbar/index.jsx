@@ -1,17 +1,17 @@
-// src/SearchBar.js
 import React, { useState, useCallback } from "react";
-import { InputAdornment, TextField } from "@mui/material";
+import { InputAdornment } from "@mui/material";
 import debounce from "lodash/debounce";
 import { ICONS } from "../../assets/icons";
+import { CustomTextField } from "../inputs/style";
 
-const SearchBar = ({ onChange, delay = 300 }) => {
+const SearchBar = ({ onChange, delay = 400 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const debouncedChangeHandler = useCallback(
     debounce((value) => {
       onChange(value);
     }, delay),
-    []
+    [onChange, delay]
   );
 
   const handleChange = (event) => {
@@ -21,7 +21,7 @@ const SearchBar = ({ onChange, delay = 300 }) => {
   };
 
   return (
-    <TextField
+    <CustomTextField
       variant="outlined"
       size="small"
       placeholder="Search"
@@ -30,9 +30,7 @@ const SearchBar = ({ onChange, delay = 300 }) => {
       sx={{ marginRight: 2 }}
       InputProps={{
         startAdornment: (
-          <InputAdornment position="start">
-            {ICONS.search}
-          </InputAdornment>
+          <InputAdornment position="start">{ICONS.search}</InputAdornment>
         ),
       }}
     />

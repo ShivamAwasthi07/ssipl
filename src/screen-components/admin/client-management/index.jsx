@@ -69,8 +69,7 @@ const ClientManagementScreen = () => {
     console.log(row);
   };
   return (
-    <CustomTable columns={columns} rows={rows} onRowClick={disp} />
-    // <div></div>
+    <CustomTable addButtonVisible={true} isFilterable={true} title="Client Management" columns={columns} rows={rows} onRowClick={disp} />
   );
 };
 

@@ -17,4 +17,7 @@ export const COLORS = {
 
   warning: "#F9AB00",
   warning_secondary: "#f9ab0026",
+
+  grey_bg: '#A2A1A8',
+  faded_black: '#0D0D0D1A'
 };

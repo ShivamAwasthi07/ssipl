@@ -7,7 +7,7 @@ const ClientManagementScreen = lazy(() =>
 
 const ClientManagement = () => {
   return (
-    <AppLayout>
+    <AppLayout searchable={true}>
       <ClientManagementScreen />
     </AppLayout>
   );

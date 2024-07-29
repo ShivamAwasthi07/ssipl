@@ -11,8 +11,8 @@ const AppButton = ({
   title = "Click!",
   variant = "contained", //contained, text, outlined
   size = "small", //small, medium, large
-  startIcon: StartIcon,
-  endIcon: EndIcon,
+  startIcon: StartIcon = undefined,
+  endIcon: EndIcon = undefined,
   disabled = false,
   isLoading = false,
   loadPosition, //start, center, end
@@ -20,6 +20,7 @@ const AppButton = ({
   onClick,
   fullWidth = false,
 }) => {
+  console.log(StartIcon);
   return (
     <Fragment>
       {loadingType ? (
@@ -27,8 +28,8 @@ const AppButton = ({
           variant={variant}
           disabled={disabled}
           size={size}
-          startIcon={!!StartIcon && <StartIcon />}
-          endIcon={!!EndIcon && <EndIcon />}
+          startIcon={!!StartIcon && StartIcon}
+          endIcon={!!EndIcon && EndIcon}
           loading={isLoading}
           loadingPosition={loadPosition}
           loadingIndicator={loadIndicator}
@@ -44,8 +45,8 @@ const AppButton = ({
           variant={variant}
           disabled={disabled}
           size={size}
-          startIcon={StartIcon && <StartIcon />}
-          endIcon={EndIcon && <EndIcon />}
+          startIcon={!!StartIcon && StartIcon}
+          endIcon={!!EndIcon && EndIcon}
           type="button"
           onClick={onClick}
           fullWidth={fullWidth}

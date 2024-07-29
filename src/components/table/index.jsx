@@ -5,7 +5,7 @@ import {
   TableRow,
   TableCell,
   Paper,
-  IconButton,
+  Stack,
 } from "@mui/material";
 import {
   Header,
@@ -14,44 +14,28 @@ import {
   StyledTableRow,
   Title,
 } from "./styles";
-import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
-import SearchBar from "../searchbar";
+import FilterButton from "../filter";
+import AddButton from "../atoms/addButton";
 
 const CustomTable = ({
   columns,
   rows,
   title = "Table Name",
-  addButtonVisible = true,
-  isSearchable = true,
-  isFilterable = true,
+  addButtonVisible = false,
+  isFilterable = false,
   onAddClick,
   onRowClick,
 }) => {
-  const hitApi = (e) => {
-    console.log(e);
-  }
   return (
     <StyledTableContainer component={Paper}>
       <Header>
-        <Title>{title}</Title>
-        <span style={{ textAlign: "right" }}>
-          {addButtonVisible && (
-            <IconButton
-              edge="end"
-              onClick={onAddClick}
-              style={{ padding: 0, paddingRight: 10, color: "black" }}
-              aria-label="close"
-            >
-              <AddCircleOutlineRoundedIcon />
-            </IconButton>
-          )}
-          {isSearchable && (
-            <SearchBar onChange={hitApi}/>
-          )}
-          {isFilterable && (
-            <div></div>
-          )}
-        </span>
+        <Title>
+          <span className="fading-border">{title}</span>
+        </Title>
+        <Stack direction="row" spacing={2}>
+          {addButtonVisible && <AddButton onClick={onAddClick} />}
+          {isFilterable && <FilterButton />}
+        </Stack>
       </Header>
       <Table>
         <StyledTableHead>

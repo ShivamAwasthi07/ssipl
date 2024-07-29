@@ -8,7 +8,10 @@ import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
+import BellIcon from "@mui/icons-material/NotificationsOutlined";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import AddIcon from "@mui/icons-material/Add";
 
 export const ICONS = {
   hamburger: <MenuIcon />,
@@ -19,4 +22,7 @@ export const ICONS = {
   help: <HelpCenterOutlinedIcon />,
   logout: <LogoutOutlinedIcon />,
   search: <SearchIcon />,
+  notification: <BellIcon />,
+  filter: <FilterListIcon />,
+  add: <AddIcon />,
 };

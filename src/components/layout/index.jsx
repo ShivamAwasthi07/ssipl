@@ -5,7 +5,7 @@ import AppLoader from "../suspense-loader";
 import { Toolbar, Box } from "@mui/material";
 import { drawerWidth, headHeight } from "../../constants/numConstant";
 
-const AppLayout = ({ children, headerTitle = "" }) => {
+const AppLayout = ({ children, headerTitle = "", searchable = false }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -19,6 +19,7 @@ const AppLayout = ({ children, headerTitle = "" }) => {
           handleDrawerToggle={handleDrawerToggle}
           drawerWidth={drawerWidth}
           headHeight={headHeight}
+          isSearchable={searchable}
         />
         <AppSidebar
           handleDrawerToggle={handleDrawerToggle}
