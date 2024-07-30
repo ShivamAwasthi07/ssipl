@@ -20,7 +20,6 @@ const AppButton = ({
   onClick,
   fullWidth = false,
 }) => {
-  console.log(StartIcon);
   return (
     <Fragment>
       {loadingType ? (

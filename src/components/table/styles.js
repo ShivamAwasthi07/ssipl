@@ -27,12 +27,11 @@ export const Header = styled("div")({
   alignItems: "center",
   padding: "20px 16px",
   color: COLORS.heading,
-  width: "90%",
+  width: "95%",
   position: "relative",
   left: "50%",
   translate: "-50%",
   borderRadius: "12px",
-  zIndex: 1,
 });
 
 export const Title = styled("div")({

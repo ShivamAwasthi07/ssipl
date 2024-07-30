@@ -85,7 +85,7 @@ const LoginScreen = () => {
                 loadingType={true}
                 isLoading={isLoginLoading}
                 loadPosition={"end"}
-                endIcon={LockOpenIcon}
+                endIcon={<LockOpenIcon/>}
                 onClick={loginSubmit(onLogin)}
                 fullWidth={true}
               />

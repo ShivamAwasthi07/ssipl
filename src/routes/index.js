@@ -8,6 +8,8 @@ import ClientManagement from "../pages/admin/client-management";
 import WarehouseManagement from "../pages/admin/warehouse-management";
 import UserManagement from "../pages/admin/user-management";
 import ROUTE_USERTYPE from "../constants/RouteUsertype";
+import JobDetailReport from "../pages/common/job-detail";
+import AllJobs from "../pages/common/all-jobs";
 
 const Router = () => {
   return (
@@ -25,6 +27,8 @@ const Router = () => {
         path={`/${ROUTE_USERTYPE.ADMIN}/${ROUTES.WAREHOUSE_MANAGEMENT}`}
         element={<WarehouseManagement />}
       />
+      <Route path={`/${ROUTE_USERTYPE.ADMIN}/${ROUTES.CLIENT_MANAGEMENT}/:clientId`} element={<AllJobs />} />
+      <Route path={`/${ROUTE_USERTYPE.ADMIN}/${ROUTES.JOB_DETAIL}/:jobId`} element={<JobDetailReport />} />
 
       <Route path="*" element={<NoPageFound />} />
     </Routes>

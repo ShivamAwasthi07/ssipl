@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from "react";
-import { InputAdornment } from "@mui/material";
+import React, { useState, useEffect, useCallback } from "react";
+import { InputAdornment, IconButton } from "@mui/material";
 import debounce from "lodash/debounce";
-import { ICONS } from "../../assets/icons";
+import { ICONS } from "../../assets/icons"; // Make sure this includes a clear icon
 import { CustomTextField } from "../inputs/style";
+import ClearIcon from "@mui/icons-material/Clear"; // You can replace this with your custom clear icon if needed
 
-const SearchBar = ({ onChange, delay = 400 }) => {
+const SearchBar = ({ onChange, delay = 300 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const debouncedChangeHandler = useCallback(
@@ -14,10 +15,20 @@ const SearchBar = ({ onChange, delay = 400 }) => {
     [onChange, delay]
   );
 
+  useEffect(() => {
+    return () => {
+      debouncedChangeHandler.cancel();
+    };
+  }, [debouncedChangeHandler]);
+
   const handleChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    debouncedChangeHandler(value);
+  };
+  
+  const clearSearch = () => {
+    setSearchTerm("");
+    debouncedChangeHandler("");
   };
 
   return (
@@ -31,6 +42,13 @@ const SearchBar = ({ onChange, delay = 400 }) => {
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">{ICONS.search}</InputAdornment>
+        ),
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton onClick={clearSearch} style={{visibility: searchTerm ? "visible" : "hidden"}}>
+              <ClearIcon />
+            </IconButton>
+          </InputAdornment>
         ),
       }}
     />
