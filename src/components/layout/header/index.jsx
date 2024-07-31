@@ -39,8 +39,8 @@ const AppHeader = ({
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
           minHeight: headHeight,
-          backgroundColor: "transparent",
-          boxShadow: "none",
+          backgroundColor: COLORS.white_text,
+          boxShadow: "1px",
         }}
       >
         <Toolbar>

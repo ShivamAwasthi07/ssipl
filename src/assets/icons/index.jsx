@@ -15,6 +15,8 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditIcon from '@mui/icons-material/ModeEditOutlined';
 import ViewButton from '@mui/icons-material/VisibilityOutlined';
+import DownloadIcon from '@mui/icons-material/FileDownloadOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 
 export const ICONS = {
   hamburger: <MenuIcon />,
@@ -31,4 +33,6 @@ export const ICONS = {
   delete: <DeleteOutlinedIcon />,
   edit: <EditIcon />,
   view: <ViewButton />,
+  download: <DownloadIcon />,
+  close: <CloseIcon />,
 };

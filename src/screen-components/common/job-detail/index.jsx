@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Box } from "@mui/material";
+import { styled } from "@mui/system"
 import ClientDetail from "./report-elements/ClientDetail";
 import OutwardReport from "./report-elements/OutwardReport";
 import InwardReport from "./report-elements/InwardReport";
+import { COLORS } from "../../../assets/colors";
 
-function TabPanel({ children, value, index, ...other }) {
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`tabpanel-${index}`}
-      aria-labelledby={`tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </div>
-  );
-}
+const components = [<ClientDetail />, <InwardReport />, <OutwardReport />];
+
+const StyledTabs = styled((props) => (
+  <Tabs
+    {...props}
+    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  />
+))({
+  color: COLORS.theme,
+  "& .MuiTabs-indicator": {
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "transparent",
+  },
+  "& .MuiTabs-indicatorSpan": {
+    maxWidth: 40,
+    width: "100%",
+    backgroundColor: COLORS.theme,
+  },
+});
 
 const JobDetail = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -27,24 +36,16 @@ const JobDetail = () => {
 
   return (
     <Box>
-      <Tabs
+      <StyledTabs
         value={selectedTab}
         onChange={handleChange}
         aria-label="job detail tabs"
       >
-        <Tab label="Details" id="tab-0" aria-controls="tabpanel-0" />
+        <Tab sx={{color: 'red'}} label="Details" id="tab-0" aria-controls="tabpanel-0" />
         <Tab label="Inward" id="tab-1" aria-controls="tabpanel-1" />
         <Tab label="Outward" id="tab-2" aria-controls="tabpanel-2" />
-      </Tabs>
-      <TabPanel value={selectedTab} index={0}>
-        <ClientDetail />
-      </TabPanel>
-      <TabPanel value={selectedTab} index={1}>
-        <InwardReport />
-      </TabPanel>
-      <TabPanel value={selectedTab} index={2}>
-        <OutwardReport />
-      </TabPanel>
+      </StyledTabs>
+      <Box p={2}>{components[selectedTab]}</Box>
     </Box>
   );
 };
