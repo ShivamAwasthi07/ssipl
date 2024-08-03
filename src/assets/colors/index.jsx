@@ -2,6 +2,7 @@ export const COLORS = {
   text: "#626262",
   heading: "#202124",
   white_text: "#fafafa",
+  transparent: "transparent",
 
   theme: "#EB773A",
   theme_secondary: "rgba(235, 119, 58, 0.08)",
